@@ -1,0 +1,12 @@
+h1 Tactical command
+p Select an existing game or start a new one
+div
+  input.form-control(type="text" ng-model="name" placeholder="Start a new game with a name")
+  button.btn.btn-success(ng-click="newgame(name)")
+    span.glyphicon.glyphicon-plus
+    |  Start a new game
+
+h3
+  | Running games
+hr
+div {{ games }}
