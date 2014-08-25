@@ -1,12 +1,37 @@
 h1 Tactical command
 p Select an existing game or start a new one
 div
-  input.form-control(type="text" ng-model="name" placeholder="Start a new game with a name")
-  button.btn.btn-success(ng-click="newgame(name)")
-    span.glyphicon.glyphicon-plus
-    |  Start a new game
+  form(name="newgameForm")
+    input(type="text" name="game_name" ng-model="name" placeholder="Name your new game!" required)
+    span.error(ng-show="newgameForm.game_name.$error.required") Needs a name
+    br
+    button.btn.btn-success(ng-click="newgame(name)")
+      span.glyphicon.glyphicon-plus
+      |  Start a new game
 
-h3
-  | Running games
+h3 Running games
 hr
-div {{ games }}
+table.table.table-striped
+  thead
+    tr
+      td Name
+      td Created
+      td PlayerOne
+      td P2
+      td Winner
+  tbody
+    tr(ng-repeat="game in games")
+      td {{ game.name }}
+      td {{ formatDate(game.created); }}
+      td
+        div(ng-repeat="ship in game.playerOne.ships")
+          div {{ ship.name }} ({{ship.size}})
+      td
+        div(ng-repeat="ship in game.p2.ships")
+          div {{ ship.name }} ({{ship.size}})
+      td {{ game.winner==null?'None':game.winner }}
+      td
+        button.btn.btn-danger(ng-click="join(game)") Join
+      td
+        button.btn.btn-success(ng-click="watch(game)") Watch
+
