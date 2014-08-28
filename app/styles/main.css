@@ -77,3 +77,15 @@ body {
     border-bottom: 0;
   }
 }
+
+/* Grid */
+.grid { margin:1em auto; border-collapse:collapse }
+.grid td {
+    cursor:pointer;
+    width:30px; height:30px;
+    border:1px dotted #ccc;
+    background-color:blue;
+}
+.grid td.clicked {
+    background-color:red;
+}
