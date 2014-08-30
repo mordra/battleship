@@ -1,9 +1,25 @@
-h1 Battle Room
+h1 Battle Room - {{ game.name }}
 p Place your warships on the grid and prepare for battle!
-<hr>
-table(id="grid").grid
-  tbody
-    tr(ng-repeat="square in playerGrid")
-      td(ng-repeat="square in playerGrid")
 
+h3(ng-class="player=='playerOne'?'red':'blue'") Player: {{ player }}
+hr
+h3.bg-info {{ gameState }}
+table.grid#grid
+  tbody
+    tr(ng-repeat="row in game.grid")
+      td.bg-info(ng-repeat="cell in row" ng-click='clickCell(cell)' ng-class='myAlert' ng-mouseover="myAlert = 'bg-danger'" ng-Mouseleave="myAlert=''")
+
+div {{ game.playerOne.ships }}
+
+table.table.table-striped
+  thead
+    tr
+      td Ship Name
+      td Ship Health
+  tbody
+    tr(ng-repeat="ship in game[player].ships")
+      td {{ ship.name }}
+      td {{ ship.health }} / {{ ship.size }}
+      td
+        button.btn.btn.info(ng-show='ship.location.length != ship.size' ng-click='placeShip(ship)') Place Ship
 

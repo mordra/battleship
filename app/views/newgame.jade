@@ -1,5 +1,6 @@
 h1 Tactical command
 p Select an existing game or start a new one
+p {{ shitt }}
 div
   form(name="newgameForm")
     input(type="text" name="game_name" ng-model="name" placeholder="Name your new game!" required)
@@ -31,7 +32,10 @@ table.table.table-striped
           div {{ ship.name }} ({{ship.size}})
       td {{ game.winner==null?'None':game.winner }}
       td
-        button.btn.btn-danger(ng-click="join(game)") Join
+        button.btn.btn-success(ng-click="join(game)") Join
       td
-        button.btn.btn-success(ng-click="watch(game)") Watch
+        button.btn.btn-info(ng-click="watch(game)") Watch
+      td
+        button.btn.btn-danger(ng-click="delete(game)")
+          span.glyphicon.glyphicon-remove
 
